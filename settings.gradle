@@ -1,0 +1,7 @@
+rootProject.name = 'microservices'
+
+include 'zuul'
+include 'service-a'
+include 'service-b'
+include 'eureka-server'
+

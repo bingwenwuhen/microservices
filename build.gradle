@@ -1,0 +1,53 @@
+group 'cn.com'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    ext {
+        springBootVersion = '1.3.7.RELEASE'
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "io.spring.gradle:dependency-management-plugin:0.6.0.RELEASE"
+    }
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'idea'
+    apply plugin: 'spring-boot'
+    apply plugin: "io.spring.dependency-management"
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    buildscript {
+        repositories {
+            mavenLocal()
+            mavenCentral()
+        }
+        dependencyManagement {
+            imports {
+                mavenBom "org.springframework.cloud:spring-cloud-dependencies:Brixton.SR6"
+            }
+        }
+    }
+}
